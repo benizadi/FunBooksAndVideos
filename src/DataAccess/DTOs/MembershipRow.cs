@@ -1,6 +1,8 @@
+using DataAccess.DTOs.Enums;
+
 namespace DataAccess.DTOs;
 
-public class Membership
+public class MembershipRow
 {
     public int MembershipId { get; set; }
     public decimal MembershipFee { get; set; }

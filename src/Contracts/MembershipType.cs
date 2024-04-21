@@ -1,4 +1,4 @@
-namespace DataAccess.DTOs;
+namespace Contracts;
 
 public enum MembershipType
 {
