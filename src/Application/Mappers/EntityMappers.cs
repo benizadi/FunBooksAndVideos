@@ -43,5 +43,14 @@ public static class EntityMappers
             Address = customerRow.Address,
             IsActiveMember = customerRow.IsActiveMember
         };
+    }    
+    public static ShippingSlip ToShippingSlip(this ShippingSlipRow shippingSlipRow)
+    {
+        return new ShippingSlip
+        {
+            PurchaseOrderId = shippingSlipRow.PurchaseOrderId,
+            CustomerName = shippingSlipRow.CustomerName,
+            Address = shippingSlipRow.Address
+        };
     }
 }

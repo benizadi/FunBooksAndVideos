@@ -19,6 +19,7 @@ public static class DependencyInjection
         
         services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
         services.AddScoped<IGetActiveCustomersQuery, GetActiveCustomersQuery>();
+        services.AddScoped<IGetAllShippingSlipsQuery, GetAllShippingSlipsQuery>();
         
         return services;
     }

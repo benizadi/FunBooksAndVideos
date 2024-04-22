@@ -6,10 +6,20 @@ namespace DataAccess.Repositories;
 public interface IShippingSlipRepository
 {
     Task GenerateShippingSlip(ShippingSlipRow shippingSlipRow);
+    Task<List<ShippingSlipRow>> GetAllShippingSlips();
+
 }
 
 public class ShippingSlipRepository(DatabaseContext context) : IShippingSlipRepository
 {
+    public async Task<List<ShippingSlipRow>> GetAllShippingSlips()
+    {
+        var shippingSlipRows = await context.ShippingSlip
+            .AsNoTracking()
+            .ToListAsync();
+
+        return shippingSlipRows;
+    }
     public async Task GenerateShippingSlip(ShippingSlipRow shippingSlipRow)
     {
         try

@@ -23,4 +23,3 @@ public class GetActiveCustomersQuery(ICustomerRepository customerRepository) : I
         return customerRow.Select(x => x.ToCustomer()).ToList();
     }
 }
-
