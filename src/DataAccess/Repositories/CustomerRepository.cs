@@ -6,6 +6,7 @@ namespace DataAccess.Repositories;
 public interface ICustomerRepository
 {
     Task<CustomerRow?> GetCustomerById(int customerId);
+    Task<List<CustomerRow>> GetAllActiveCustomer();
     Task ActivateCustomer(int customerId);
 }
 
@@ -24,6 +25,16 @@ public class CustomerRepository : ICustomerRepository
         var customer = await _context.Customer
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.CustomerId == customerId);
+
+        return customer;
+    }
+    
+    public async Task<List<CustomerRow>> GetAllActiveCustomer()
+    {
+        var customer = await _context.Customer
+            .AsNoTracking()
+            .Where(x => x.IsActiveMember == true)
+            .ToListAsync();
 
         return customer;
     }

@@ -7,7 +7,7 @@ using FluentResults;
 
 namespace Application.Handlers;
 
-public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder): ICommand<string>
+public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder) : ICommand<string>
 {
     internal sealed class CreatePurchaseOrderRequestHandler(
         ICreatePurchaseOrderCommand createPurchaseOrderCommand,
