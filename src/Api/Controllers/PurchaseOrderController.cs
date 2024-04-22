@@ -13,6 +13,10 @@ public class PurchaseOrderController(ISender mediator) : ControllerBase
     public async Task<IActionResult> CreatePurchaseOrder(PurchaseOrder purchaseOrder)
     {
         var result = await mediator.Send(new CreatePurchaseOrderRequest( purchaseOrder));
-        return Ok(result);
+        
+        if(result.IsSuccess)
+            return Ok(result);
+
+        return BadRequest(result.Errors);
     }
 }

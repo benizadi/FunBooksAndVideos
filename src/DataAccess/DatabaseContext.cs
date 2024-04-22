@@ -11,6 +11,7 @@ public class DatabaseContext : DbContext
     }
     
     public DbSet<PurchaseOrderRow> PurchaseOrders { get; set; }
+    public DbSet<CustomerRow> Customer { get; set; }
 
 }
 

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Application.Commands;
+using Application.Queries;
 using DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ public static class DependencyInjection
         services.AddDataAccess();
         
         services.AddScoped<ICreatePurchaseOrderCommand, CreatePurchaseOrderCommand>();
+        services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
         
         return services;
     }

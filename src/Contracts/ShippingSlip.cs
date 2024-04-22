@@ -2,5 +2,5 @@
 
 public class ShippingSlip
 {
-    public required string Address { get; set; }
+    public string Address { get; set; }
 }
