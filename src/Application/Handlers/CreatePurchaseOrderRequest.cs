@@ -18,7 +18,6 @@ public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder): IC
     {
         public async Task<Result<string>> Handle(CreatePurchaseOrderRequest request, CancellationToken cancellationToken)
         {
-            
             var customer = await getCustomerQuery.Execute(new GetCustomerQueryArgs(request.PurchaseOrder.CustomerId));
             
             if(customer == null) return Result.Fail("failed to find a relevant customer for the provided Id");
