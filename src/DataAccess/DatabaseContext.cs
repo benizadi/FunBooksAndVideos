@@ -10,9 +10,7 @@ public class DatabaseContext : DbContext
         optionsBuilder.UseInMemoryDatabase(databaseName: "ProductDb");
     }
     
-    public DbSet<PurchaseOrderRow> PurchaseOrders { get; private set; } /// <summary>
-                                                                        ///  yoyoyoyoyoyo
-                                                                        /// </summary>
+    public DbSet<PurchaseOrderRow> PurchaseOrders { get; private set; }
     public DbSet<CustomerRow> Customer { get; private set; }
     
     public DbSet<ShippingSlipRow> ShippingSlip { get; private set; }
