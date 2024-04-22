@@ -15,6 +15,8 @@ public static class DependencyInjection
         
         services.AddScoped<ICreatePurchaseOrderCommand, CreatePurchaseOrderCommand>();
         services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
+        services.AddScoped<IActivateMembershipCommand, ActivateMembershipCommand>();
+        services.AddScoped<IGenerateShippingSlipCommand, GenerateShippingSlipCommand>();
         
         return services;
     }

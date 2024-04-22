@@ -19,7 +19,7 @@ public class CreatePurchaseOrderCommand(IPurchaseOrderRepository purchaseOrderRe
 {
     public async Task<Result> Execute(CreatePurchaseOrderCommandArgs args)
     {
-        var result = await purchaseOrderRepository.AddPurchaseOrder(args.PurchaseOrder.ToPurchaseOrderRow());
+        await purchaseOrderRepository.AddPurchaseOrder(args.PurchaseOrder.ToPurchaseOrderRow());
         return Result.Ok();
     }
 }

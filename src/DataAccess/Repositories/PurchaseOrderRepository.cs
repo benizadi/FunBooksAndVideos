@@ -5,28 +5,26 @@ namespace DataAccess.Repositories;
 
 public interface IPurchaseOrderRepository
 {
-    Task<int> AddPurchaseOrder(PurchaseOrderRow purchaseOrder);
+    Task AddPurchaseOrder(PurchaseOrderRow purchaseOrder);
 }
 
 public class PurchaseOrderRepository(DatabaseContext context) : IPurchaseOrderRepository
 {
-    public async Task<int> AddPurchaseOrder(PurchaseOrderRow purchaseOrder)
+    public async Task AddPurchaseOrder(PurchaseOrderRow purchaseOrder)
     {
         try
         {
             await context.PurchaseOrders.AddAsync(purchaseOrder);
-            return await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
         catch (DbUpdateException ex)
         {
-            Console.WriteLine("failed to persist purchase order: " +
-                              ex.Message); // in real world this will be logged in Application insights 
+            Console.WriteLine("failed to persist purchase order: {0}", ex.Message); // in real world this will be logged in Application insights 
             throw;
         }
         catch (Exception ex)
         {
-            Console.WriteLine("unpredictable exception while persisting purchase order: " + 
-                              ex.Message);
+            Console.WriteLine("unpredictable exception while persisting purchase order: {0}", ex.Message);
             throw;
         }
     }

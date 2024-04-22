@@ -23,7 +23,6 @@ public static class EntityMappers
         return new ProductRow
         {
             ProductName = product.ProductName,
-            UnitPrice = product.UnitPrice,
             ProductType = (ProductType)product.ProductType
         };
     }
@@ -32,7 +31,6 @@ public static class EntityMappers
     {
         return new MembershipRow
         {
-            MembershipFee = membership.MembershipFee,
             MembershipType = (MembershipType)membership.MembershipType
         };
     }

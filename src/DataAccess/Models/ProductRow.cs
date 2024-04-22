@@ -9,7 +9,6 @@ public class ProductRow
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ProductId { get; set; }
-    public required string ProductName { get; set; }
-    public decimal UnitPrice { get; set; }
+    public string ProductName { get; set; }
     public ProductType ProductType { get; set; }
 }

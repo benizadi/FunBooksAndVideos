@@ -1,14 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DataAccess.Models;
 
-public class CustomerRow
+public class ShippingSlipRow
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int CustomerId { get; set; }
-    public string FullName { get; set; }
+    public int ShippingSlipId { get; set; }
+    public int PurchaseOrderId { get; set; }
+    public string CustomerName { get; set; }
     public string Address { get; set; }
-    public bool IsActiveMember { get; set; }
 }
