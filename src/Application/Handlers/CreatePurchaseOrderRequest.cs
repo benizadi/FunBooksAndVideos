@@ -12,7 +12,8 @@ public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder): IC
     {
         public async Task<Result<string>> Handle(CreatePurchaseOrderRequest request, CancellationToken cancellationToken)
         {
-            var result = await createPurchaseOrderCommand.Execute(new CreatePurchaseOrderCommandArgs(request.PurchaseOrder));
+            var tempCustomerId = 1;
+            var result = await createPurchaseOrderCommand.Execute(new CreatePurchaseOrderCommandArgs(request.PurchaseOrder, tempCustomerId));
 
             if (result.IsSuccess)
                 return "Successfully Created a purchase Order";

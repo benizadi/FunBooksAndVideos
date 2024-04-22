@@ -1,4 +1,4 @@
-namespace DataAccess.DTOs.Enums;
+namespace DataAccess.Models.Enums;
 
 public enum ProductType
 {
