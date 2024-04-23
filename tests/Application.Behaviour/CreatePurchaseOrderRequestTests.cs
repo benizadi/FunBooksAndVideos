@@ -24,8 +24,7 @@ namespace Application.Behaviour
                         ProductName = "TestProductName",
                         ProductType = ProductType.Video
                     }
-                },
-                TotalPrice = 100
+                }
             };
             
             //Act
@@ -47,10 +46,10 @@ namespace Application.Behaviour
                     new Product()
                     {
                         ProductName = "TestProductName",
-                        ProductType = ProductType.Book
+                        ProductType = ProductType.Book,
+                        UnitPrice = 100
                     }
                 },
-                TotalPrice = 100
             };
             
             //Act
@@ -74,15 +73,16 @@ namespace Application.Behaviour
                     new Product()
                     {
                         ProductName = "TestProductName",
-                        ProductType = ProductType.Book
-                    }
+                        ProductType = ProductType.Book,
+                        UnitPrice = 100
+                    },
                 },
                 Membership =
                     new Membership()
                     {
-                        MembershipType = MembershipType.BookClubMembership
-                    },
-                TotalPrice = 100
+                        MembershipType = MembershipType.BookClubMembership,
+                        Fee = 120
+                    }
             };
             
             //Act
@@ -91,6 +91,44 @@ namespace Application.Behaviour
             //Assert
             result.IsSuccess.Should().Be(true);
             _context.Customer.First(x => x.CustomerId == purchaseOrder.CustomerId).IsActiveMember.Should().Be(true);
+        }
+        
+        [Test]
+        public async Task When_PurchaseOrderContainsProducts_ShouldCalculateCorrectTotalPrice()
+        {
+            //Arrange
+            var purchaseOrder = new PurchaseOrder
+            {
+                CustomerId = 1,
+                Products = new List<Product>()
+                {
+                    new Product()
+                    {
+                        ProductName = "TestProductName1",
+                        ProductType = ProductType.Book,
+                        UnitPrice = 100
+                    },
+                    new Product()
+                    {
+                        ProductName = "TestProductName2",
+                        ProductType = ProductType.Book,
+                        UnitPrice = 50
+                    },
+                },
+                Membership =
+                    new Membership()
+                    {
+                        MembershipType = MembershipType.BookClubMembership,
+                        Fee = 120
+                    }
+            };
+            
+            //Act
+            var result = await _handler.Handle(new CreatePurchaseOrderRequest(purchaseOrder), CancellationToken.None);
+
+            //Assert
+            result.IsSuccess.Should().Be(true);
+            _context.PurchaseOrders.First().TotalPrice.Should().Be(270);
         }
         
         [Test]
@@ -105,10 +143,10 @@ namespace Application.Behaviour
                     new Product()
                     {
                         ProductName = "TestProductName",
-                        ProductType = ProductType.Video
+                        ProductType = ProductType.Video,
+                        UnitPrice = 100
                     }
-                },
-                TotalPrice = 100
+                }
             };
             
             //Act
@@ -131,10 +169,10 @@ namespace Application.Behaviour
                     new Product()
                     {
                         ProductName = "TestProductName",
-                        ProductType = ProductType.Book
+                        ProductType = ProductType.Book,
+                        UnitPrice = 100
                     }
-                },
-                TotalPrice = 100
+                }
             };
             
             //Act

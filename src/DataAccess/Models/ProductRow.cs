@@ -11,4 +11,5 @@ public class ProductRow
     public long ProductId { get; set; }
     public string ProductName { get; set; }
     public ProductType ProductType { get; set; }
+    public decimal UnitPrice { get; set; }
 }

@@ -10,4 +10,5 @@ public class MembershipRow
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long MembershipId { get; set; }
     public MembershipType MembershipType { get; set; }
+    public decimal Fee { get; set; }
 }

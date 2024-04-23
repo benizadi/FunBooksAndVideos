@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using Application.Extensions;
+using Contracts;
 using DataAccess.Models;
 using MembershipType = DataAccess.Models.Enums.MembershipType;
 using ProductType = DataAccess.Models.Enums.ProductType;
@@ -14,7 +15,7 @@ public static class EntityMappers
             CustomerId = purchaseOrder.CustomerId,
             Products = purchaseOrder.Products?.Select(x => x.ToProductRow()).ToList(),
             Memberships = purchaseOrder.Membership?.ToMembershipRow(),
-            TotalPrice = purchaseOrder.TotalPrice
+            TotalPrice = purchaseOrder.CalculateTotalPrice()
         };
     }
 
