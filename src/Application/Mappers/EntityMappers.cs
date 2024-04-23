@@ -13,7 +13,7 @@ public static class EntityMappers
         {
             CustomerId = purchaseOrder.CustomerId,
             Products = purchaseOrder.Products?.Select(x => x.ToProductRow()).ToList(),
-            Memberships = purchaseOrder.Memberships?.Select(x => x.ToMembershipRow()).ToList(),
+            Memberships = purchaseOrder.Membership?.ToMembershipRow(),
             TotalPrice = purchaseOrder.TotalPrice
         };
     }

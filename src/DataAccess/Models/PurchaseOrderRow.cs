@@ -10,6 +10,6 @@ public class PurchaseOrderRow
     public long PurchaseOrderId { get; set; }
     public int CustomerId { get; set; }
     public ICollection<ProductRow>? Products { get; set; }
-    public ICollection<MembershipRow>? Memberships { get; set; }
+    public MembershipRow? Memberships { get; set; }
     public decimal TotalPrice { get; set; }
 }

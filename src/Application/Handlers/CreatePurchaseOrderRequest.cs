@@ -27,7 +27,7 @@ public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder) : I
             if (result.IsFailed)
                 return Result.Fail("failed to create purchase order");
 
-            if (request.PurchaseOrder.Memberships.Any())
+            if (request.PurchaseOrder.Membership != null)
                 await activateMembershipCommand.Execute(new ActivateMembershipCommandArgs(request.PurchaseOrder.CustomerId));
 
             if (request.PurchaseOrder.Products.HasPhysicalProduct())

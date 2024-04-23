@@ -77,13 +77,11 @@ namespace Application.Behaviour
                         ProductType = ProductType.Book
                     }
                 },
-                Memberships = new List<Membership>
-                {
+                Membership =
                     new Membership()
                     {
                         MembershipType = MembershipType.BookClubMembership
-                    }
-                },
+                    },
                 TotalPrice = 100
             };
             
