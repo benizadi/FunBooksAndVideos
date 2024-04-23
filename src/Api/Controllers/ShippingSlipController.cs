@@ -9,7 +9,8 @@ namespace Api.Controllers;
 public class ShippingSlipController(ISender mediator) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAllActiveMemberCustomer()
+    [Route("GetAllShippingSlips")]
+    public async Task<IActionResult> GetAllShippingSlips()
     {
         var result = await mediator.Send(new GetAllShippingSlipsRequest());
 

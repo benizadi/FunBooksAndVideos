@@ -9,6 +9,7 @@ namespace Api.Controllers;
 public class CustomerController(ISender mediator) : ControllerBase
 {
     [HttpGet]
+    [Route("GetAllActiveMemberCustomer")]
     public async Task<IActionResult> GetAllActiveMemberCustomer()
     {
         var result = await mediator.Send(new GetActiveMemberCustomersRequest());

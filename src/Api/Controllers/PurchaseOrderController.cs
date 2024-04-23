@@ -11,6 +11,7 @@ namespace Api.Controllers;
 public class PurchaseOrderController(ISender mediator, IValidator<PurchaseOrder> validator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreatePurchaseOrder")]
     public async Task<IActionResult> CreatePurchaseOrder(PurchaseOrder purchaseOrder)
     {
         var validationResult = await validator.ValidateAsync(purchaseOrder);
