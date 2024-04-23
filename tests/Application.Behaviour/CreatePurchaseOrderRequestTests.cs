@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace Application.Behaviour
 {
-    public class Tests
+    public class CreatePurchaseOrderRequestTests
     {
         [Test]
         public async Task When_PurchaseOrderIsValid_ShouldSucceed()
