@@ -12,6 +12,12 @@ Operations should be presented via Swagger.
 - The solution acts on the assumption that customers exist, therefore it preloads data and validates it accordingly
 - All the IDs are DB-generated
 
+# Extra mile
+- Using Fluent Assertion
+- Using Fluent Validation
+- EFCore In-Memory database
+- Separation of concerns using MediatR and CQRS
+
 # Code coverage on Local
 ![img](https://github.com/benizadi/FunBooksAndVideos/assets/12119278/a8f99960-4fbd-4fa1-8298-2f539ccf8b29)
 
