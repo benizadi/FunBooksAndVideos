@@ -1,5 +1,3 @@
-# FunBooksAndVideos
-
 # Dev Tools and Environment
 This solution is built in .Net 8 using JetBrains Rider and Visual Studio.
 It uses in Memory database (EF Core)
@@ -21,8 +19,8 @@ It uses in Memory database (EF Core)
 
 # Potential improvements
 Where time wasn't a limit
-- Providing EF Core DB Code first with propoer relation ships and configurations.
-- Using FakeDbContext for tests instead of relying on the In-Memory database data.
+- Providing EF Core, Code first with propoer relationships and configurations.
+- Using FakeDbContext for behaviour tests instead of relying on the In-Memory database data.
 - Providing Level 3 Maturity on the Rest APIs following HATEOAS standards and documentations.
 - Proper logging of each individual operations where necessary.
 
