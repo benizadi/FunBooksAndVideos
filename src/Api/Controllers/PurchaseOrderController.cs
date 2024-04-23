@@ -7,12 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("PurchaseOrder")]
 public class PurchaseOrderController(ISender mediator, IValidator<PurchaseOrder> validator) : ControllerBase
 {
     [HttpPost]
-    [Route("CreatePurchaseOrder")]
-    public async Task<IActionResult> CreatePurchaseOrder(PurchaseOrder purchaseOrder)
+    public async Task<IActionResult> Create(PurchaseOrder purchaseOrder)
     {
         var validationResult = await validator.ValidateAsync(purchaseOrder);
         if (!validationResult.IsValid)

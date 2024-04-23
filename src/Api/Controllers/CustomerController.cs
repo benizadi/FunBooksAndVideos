@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Customers")]
 public class CustomerController(ISender mediator) : ControllerBase
 {
     [HttpGet]
-    [Route("GetAllActiveMemberCustomer")]
-    public async Task<IActionResult> GetAllActiveMemberCustomer()
+    [Route("ActiveMembership")]
+    public async Task<IActionResult> GetAll()
     {
         var result = await mediator.Send(new GetActiveMemberCustomersRequest());
 

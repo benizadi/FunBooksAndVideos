@@ -7,8 +7,7 @@ public class ShippingSlipRow
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ShippingSlipId { get; set; }
-    public int PurchaseOrderId { get; set; }
+    public long ShippingSlipId { get; set; }
     public string CustomerName { get; set; }
     public string Address { get; set; }
 }

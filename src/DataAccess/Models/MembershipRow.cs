@@ -8,6 +8,6 @@ public class MembershipRow
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int MembershipId { get; set; }
+    public long MembershipId { get; set; }
     public MembershipType MembershipType { get; set; }
 }

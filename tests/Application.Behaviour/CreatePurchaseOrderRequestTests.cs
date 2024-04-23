@@ -16,7 +16,6 @@ namespace Application.Behaviour
             //Arrange
             var purchaseOrder = new PurchaseOrder
             {
-                PurchaseOrderId = 12334,
                 CustomerId = 1,
                 Products = new List<Product>()
                 {
@@ -42,7 +41,6 @@ namespace Application.Behaviour
             //Arrange
             var purchaseOrder = new PurchaseOrder
             {
-                PurchaseOrderId = 12334,
                 CustomerId = 1,
                 Products = new List<Product>()
                 {
@@ -61,7 +59,7 @@ namespace Application.Behaviour
             //Assert
             result.IsSuccess.Should().Be(true);
             _context.ShippingSlip.First().Should().NotBeNull();
-            _context.ShippingSlip.First().PurchaseOrderId.Should().Be(purchaseOrder.PurchaseOrderId);
+            _context.ShippingSlip.First().CustomerName.Should().Be("Customer1");
         }
         
         [Test]
@@ -70,7 +68,6 @@ namespace Application.Behaviour
             //Arrange
             var purchaseOrder = new PurchaseOrder
             {
-                PurchaseOrderId = 12334,
                 CustomerId = 1,
                 Products = new List<Product>()
                 {
@@ -104,7 +101,6 @@ namespace Application.Behaviour
             //Arrange
             var purchaseOrder = new PurchaseOrder
             {
-                PurchaseOrderId = 12334,
                 CustomerId = 1,
                 Products = new List<Product>()
                 {
@@ -131,7 +127,6 @@ namespace Application.Behaviour
             //Arrange
             var purchaseOrder = new PurchaseOrder
             {
-                PurchaseOrderId = 12334,
                 CustomerId = 1,
                 Products = new List<Product>()
                 {

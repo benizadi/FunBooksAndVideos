@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccess.Models;
 
 public class PurchaseOrderRow
 {
     [Key]
-    public int PurchaseOrderId { get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long PurchaseOrderId { get; set; }
     public int CustomerId { get; set; }
     public ICollection<ProductRow>? Products { get; set; }
     public ICollection<MembershipRow>? Memberships { get; set; }

@@ -48,7 +48,6 @@ public static class EntityMappers
     {
         return new ShippingSlip
         {
-            PurchaseOrderId = shippingSlipRow.PurchaseOrderId,
             CustomerName = shippingSlipRow.CustomerName,
             Address = shippingSlipRow.Address
         };

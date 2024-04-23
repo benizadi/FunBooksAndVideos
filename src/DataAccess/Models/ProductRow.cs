@@ -8,7 +8,7 @@ public class ProductRow
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ProductId { get; set; }
+    public long ProductId { get; set; }
     public string ProductName { get; set; }
     public ProductType ProductType { get; set; }
 }

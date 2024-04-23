@@ -22,7 +22,6 @@ public class GenerateShippingSlipCommand(IShippingSlipRepository shippingSlipRep
     {
         var shippingSlip = new ShippingSlipRow()
         {
-            PurchaseOrderId = args.PurchaseOrder.PurchaseOrderId,
             CustomerName = args.Customer.FullName,
             Address = args.Customer.Address
         };

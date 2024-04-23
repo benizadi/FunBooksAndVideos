@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("ShippingSlips")]
 public class ShippingSlipController(ISender mediator) : ControllerBase
 {
     [HttpGet]
-    [Route("GetAllShippingSlips")]
-    public async Task<IActionResult> GetAllShippingSlips()
+    [Route("ShippingSlips")]
+    public async Task<IActionResult> GetAll()
     {
         var result = await mediator.Send(new GetAllShippingSlipsRequest());
 
