@@ -1,6 +1,5 @@
 ﻿using Application.Commands;
 using Application.Common;
-using Application.Extensions;
 using Application.Queries;
 using Application.Services;
 using Contracts;
