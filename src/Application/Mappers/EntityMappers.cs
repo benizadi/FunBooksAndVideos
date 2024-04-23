@@ -18,7 +18,7 @@ public static class EntityMappers
         };
     }
 
-    public static ProductRow ToProductRow(this Product product)
+    private static ProductRow ToProductRow(this Product product)
     {
         return new ProductRow
         {
@@ -27,7 +27,7 @@ public static class EntityMappers
         };
     }
 
-    public static MembershipRow ToMembershipRow(this Membership membership)
+    private static MembershipRow ToMembershipRow(this Membership membership)
     {
         return new MembershipRow
         {
