@@ -1,6 +1,8 @@
 using Application.Commands;
 using Application.Handlers;
 using Application.Queries;
+using Application.Services;
+using Application.Services.Processors;
 using Contracts;
 using DataAccess;
 using DataAccess.Repositories;
@@ -191,16 +193,26 @@ namespace Application.Behaviour
             _purchaseOrderRepository = new PurchaseOrderRepository(_context);
             _createPurchaseOrderCommand = new CreatePurchaseOrderCommand(_purchaseOrderRepository);
             _customerRepository = new CustomerRepository(_context);
-            _activateMembershipCommand = new ActivateMembershipCommand(_customerRepository);
             _shippingSlipRepository = new ShippingSlipRepository(_context);
             _generateShippingSlipCommand = new GenerateShippingSlipCommand(_shippingSlipRepository);
             _getCustomerQuery = new GetCustomerQuery(_customerRepository);
+            _activateMembershipCommand = new ActivateMembershipCommand(_customerRepository);
+            
+            _memberActivationRuleProcessor = new MemberActivationRuleProcessor(_activateMembershipCommand);
+            _shippingSlipRuleProcessor = new ShippingSlipRuleProcessor(_generateShippingSlipCommand, _getCustomerQuery);
+            
+            _purchaseOrderRuleProcessor = new PurchaseOrderRuleEngine(new List<IPurchaseOrderTypeProcessor>()
+            {
+                _memberActivationRuleProcessor,
+                _shippingSlipRuleProcessor
+            });
+
             _handler = new CreatePurchaseOrderRequest.CreatePurchaseOrderRequestHandler(
                 _createPurchaseOrderCommand,
-                _activateMembershipCommand,
-                _generateShippingSlipCommand,
+                _purchaseOrderRuleProcessor,
                 _getCustomerQuery);
         }
+
 
         [TearDown]
         public void FinishTest()
@@ -217,6 +229,9 @@ namespace Application.Behaviour
         private IGetCustomerQuery _getCustomerQuery;
         private ICustomerRepository _customerRepository;
         private IShippingSlipRepository _shippingSlipRepository;
+        private IPurchaseOrderRuleProcessor _purchaseOrderRuleProcessor;
+        private IPurchaseOrderTypeProcessor _memberActivationRuleProcessor;
+        private IPurchaseOrderTypeProcessor _shippingSlipRuleProcessor;
         private DatabaseContext _context;
     }
 }

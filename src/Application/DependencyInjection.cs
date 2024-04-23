@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Application.Commands;
 using Application.Queries;
+using Application.Services;
+using Application.Services.Processors;
 using DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +22,11 @@ public static class DependencyInjection
         services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
         services.AddScoped<IGetActiveCustomersQuery, GetActiveCustomersQuery>();
         services.AddScoped<IGetAllShippingSlipsQuery, GetAllShippingSlipsQuery>();
+        
+        services.AddScoped<IPurchaseOrderRuleProcessor, PurchaseOrderRuleEngine>();
+        services.AddScoped<IPurchaseOrderTypeProcessor, MemberActivationRuleProcessor>();
+        services.AddScoped<IPurchaseOrderTypeProcessor, ShippingSlipRuleProcessor>();
+        
         
         return services;
     }

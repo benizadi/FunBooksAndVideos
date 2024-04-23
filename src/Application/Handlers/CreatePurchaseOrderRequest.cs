@@ -2,6 +2,7 @@
 using Application.Common;
 using Application.Extensions;
 using Application.Queries;
+using Application.Services;
 using Contracts;
 using FluentResults;
 
@@ -11,8 +12,7 @@ public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder) : I
 {
     internal sealed class CreatePurchaseOrderRequestHandler(
         ICreatePurchaseOrderCommand createPurchaseOrderCommand,
-        IActivateMembershipCommand activateMembershipCommand,
-        IGenerateShippingSlipCommand generateShippingSlipCommand,
+        IPurchaseOrderRuleProcessor purchaseOrderRuleProcessor,
         IGetCustomerQuery getCustomerQuery)
         : ICommandHandler<CreatePurchaseOrderRequest, string>
     {
@@ -27,12 +27,10 @@ public sealed record CreatePurchaseOrderRequest(PurchaseOrder PurchaseOrder) : I
             if (result.IsFailed)
                 return Result.Fail("failed to create purchase order");
 
-            if (request.PurchaseOrder.Membership != null)
-                await activateMembershipCommand.Execute(new ActivateMembershipCommandArgs(request.PurchaseOrder.CustomerId));
-
-            if (request.PurchaseOrder.Products.HasPhysicalProduct())
-                await generateShippingSlipCommand.Execute(
-                    new GenerateShippingSlipCommandArgs(request.PurchaseOrder, customer));
+            var ruleResult = await purchaseOrderRuleProcessor.ProcessAsync(request.PurchaseOrder);
+            
+            if (ruleResult.IsFailed)
+                return Result.Fail(ruleResult.Errors);
 
             return Result.Ok(); 
         }
