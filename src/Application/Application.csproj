@@ -20,4 +20,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Application.Behaviour</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
 </Project>
